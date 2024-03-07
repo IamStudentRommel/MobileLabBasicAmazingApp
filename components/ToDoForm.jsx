@@ -1,7 +1,8 @@
 import {StyleSheet, View, TextInput, Button} from 'react-native';
+import React, {useState} from 'react';
 
-function ToDoForm({addTask}) {
-  const [taskText, setTaskText] = React.useState('');
+function ToDoForm({addTask, setTaskText, taskText}) {
+  // const [taskText, setTaskText] = useState('');
 
   return (
     <View style={styles.form}>
