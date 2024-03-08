@@ -7,6 +7,7 @@ function App() {
   const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
   const [taskText, setTaskText] = useState('');
   const addTask = task => {
+    //console.log(task);
     if (task.trim().length === 0) {
       Alert.alert('Task cannot be empty!');
       return;
