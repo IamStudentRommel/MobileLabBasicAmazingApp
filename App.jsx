@@ -1,36 +1,20 @@
-import React, {useState} from 'react';
-import ToDoForm from './components/ToDoForm';
-import ToDoList from './components/ToDoList';
-import {Alert, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from './screens/HomeScreen';
+import AboutScreen from './screens/AboutScreen';
 
 function App() {
-  const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
-  const [taskText, setTaskText] = useState('');
-  const addTask = task => {
-    //console.log(task);
-    if (task.trim().length === 0) {
-      Alert.alert('Task cannot be empty!');
-      return;
-    }
-
-    if (tasks.includes(task)) {
-      Alert.alert('Task already exists!');
-      return;
-    }
-
-    setTasks([...tasks, task]);
-    setTaskText('');
-  };
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View>
-      <ToDoForm
-        addTask={addTask}
-        setTaskText={setTaskText}
-        taskText={taskText}
-      />
-      <ToDoList tasks={tasks} />
-    </View>
+    <NavigationContainer>
+      {/* Add the following: */}
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+      </Stack.Navigator>
+      {/**********************/}
+    </NavigationContainer>
   );
 }
 
