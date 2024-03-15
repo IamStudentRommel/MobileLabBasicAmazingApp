@@ -1,18 +1,29 @@
 import {StyleSheet, View, TextInput, Button} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 
-function ToDoForm({addTask, setTaskText, taskText}) {
-  // const [taskText, setTaskText] = useState('');
+function ToDoForm({addTask, setTaskText, taskText, tasks}) {
+  const handleAddTask = () => {
+    // console.log(tasks);
+    const randomIndex = Math.floor(Math.random() * tasks.length);
+    const randomTask = tasks[randomIndex];
+    setTaskText(randomTask);
+  };
 
   return (
-    <View style={styles.form}>
-      <TextInput
-        style={styles.input}
-        placeholder="Add a new task..."
-        onChangeText={text => setTaskText(text)}
-        value={taskText}
-      />
-      <Button title="Add Task" onPress={() => addTask(taskText)} />
+    <View>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          placeholder="Add a new task..."
+          onChangeText={text => setTaskText(text)}
+          value={taskText}
+        />
+
+        <Button title="Generate Random Task" onPress={handleAddTask} />
+      </View>
+      <View style={{marginTop: 15, marginBottom: 15}}>
+        <Button title="Add Task" onPress={() => addTask(taskText)} />
+      </View>
     </View>
   );
 }
